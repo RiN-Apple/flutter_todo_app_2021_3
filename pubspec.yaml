@@ -1,0 +1,44 @@
+name: todo_app
+description: A new Flutter application.
+
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0-0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  firebase_core: ^0.4.0+9
+  firebase_auth: ^0.14.0+5
+  cloud_firestore: ^0.12.9+5
+  # androidは android/app/build.gradle
+  # iosは open ios/Runner.xcworkspace
+  # でbundle idを参照できる
+  # File > Invalidate Caches / Restart でキャッシュを削除
+  # androidのエラーは https://developer.android.com/studio/build/multidex を参照
+  google_sign_in: ^5.0.0 #firebase auth を使ったgoogleサインイン
+
+  flutter_hooks: ^0.16.0
+  hooks_riverpod: ^0.13.1
+  freezed_annotation: ^0.14.0
+  uuid: ^3.0.1
+
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  build_runner: ^1.11.5
+  freezed: ^0.14.0+1
+
+
+flutter:
+
+
+  uses-material-design: true
+
