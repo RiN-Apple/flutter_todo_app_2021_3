@@ -13,15 +13,16 @@ dependencies:
   flutter:
     sdk: flutter
 
-  firebase_core: ^0.4.0+9
-  firebase_auth: ^0.14.0+5
-  cloud_firestore: ^0.12.9+5
+  firebase_core: ^1.0.1
+  firebase_auth: ^1.0.1
+  cloud_firestore: ^1.0.1
   # androidは android/app/build.gradle
   # iosは open ios/Runner.xcworkspace
   # でbundle idを参照できる
   # File > Invalidate Caches / Restart でキャッシュを削除
   # androidのエラーは https://developer.android.com/studio/build/multidex を参照
   google_sign_in: ^5.0.0 #firebase auth を使ったgoogleサインイン
+  flutter_signin_button: ^2.0.0-nullsafety.0 #ログインアイコン
 
   flutter_hooks: ^0.16.0
   hooks_riverpod: ^0.13.1
