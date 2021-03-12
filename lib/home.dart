@@ -66,6 +66,7 @@ class ToolBar extends HookWidget {
   Widget build(BuildContext context) {
     final _formKey = GlobalKey<FormState>();
     String _todo = '';
+    final _focusNode = FocusNode();
     return Form(
         key: _formKey,
         child: Container(
@@ -75,6 +76,7 @@ class ToolBar extends HookWidget {
               TextFormField(
                 decoration: InputDecoration(labelText: 'TODO'),
                 maxLength: 20,
+                focusNode: _focusNode,
                 validator: (text) {
                   return text!.isEmpty ? 'TODOを入力してください' : null;
                 },
@@ -104,6 +106,7 @@ class ToolBar extends HookWidget {
                         context.read(todoListProvider).add(_todo);
                         _todo = '';
                         _formKey.currentState!.reset();
+                        _focusNode.unfocus();
                       }
                     }),
               ),
