@@ -49,7 +49,27 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         title: Text('TODOリスト'),
         actions: [
-          IconButton(icon: Icon(Icons.logout), onPressed: _SignOutWithGoogle)
+          IconButton(
+              icon: Icon(Icons.logout),
+              onPressed: () => showDialog(
+                    context: context,
+                    builder: (_) {
+                      return AlertDialog(
+                        title: Text("ログアウトしますか？"),
+                        actions: <Widget>[
+                          // ボタン領域
+                          TextButton(
+                            child: Text("Cancel"),
+                            onPressed: () => Navigator.pop(context),
+                          ),
+                          TextButton(
+                            child: Text("OK"),
+                            onPressed: () => _SignOutWithGoogle(),
+                          ),
+                        ],
+                      );
+                    },
+                  ))
         ],
       ),
       body: Column(
