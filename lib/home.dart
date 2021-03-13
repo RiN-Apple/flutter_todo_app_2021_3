@@ -34,11 +34,16 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Future<void> _SignOutWithGoogle() async {
+      //FireStoreのリアルタイムリッスンを停止
+      context.read(todoListProvider).disposeStream();
       await FirebaseAuth.instance.signOut();
       await GoogleSignIn().signOut();
       Navigator.pushAndRemoveUntil(context,
           MaterialPageRoute(builder: (context) => LoginCheck()), (_) => false);
     }
+
+    //このページが開かれたらFireStoreのリッスンを開始
+    context.read(todoListProvider).subScribeStream();
 
     return Scaffold(
       appBar: AppBar(
@@ -61,7 +66,7 @@ class Home extends StatelessWidget {
 }
 
 //ツールバー　追加ボタン
-class ToolBar extends HookWidget {
+class ToolBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _formKey = GlobalKey<FormState>();
@@ -171,7 +176,7 @@ class TodoItem extends HookWidget {
         leading: Checkbox(
           value: todo.isDone,
           onChanged: (value) {
-            context.read(todoListProvider).toggle(todo.id);
+            context.read(todoListProvider).toggle(todo);
           },
         ),
         title: Center(
@@ -182,7 +187,7 @@ class TodoItem extends HookWidget {
         ),
         trailing: IconButton(
           onPressed: () {
-            context.read(todoListProvider).remove(todo.id);
+            context.read(todoListProvider).remove(todo);
           },
           icon: Icon(Icons.delete),
         ),
